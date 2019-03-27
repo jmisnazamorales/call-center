@@ -2,7 +2,7 @@ package com.jmisnaza.callcenter.entities;
 
 import com.jmisnaza.callcenter.enums.RolEnum;
 
-public class Employed{
+public class Employee {
 
     private RolEnum rolEmployed;
 

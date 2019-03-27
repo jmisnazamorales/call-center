@@ -1,7 +1,7 @@
 package com.jmisnaza.callcenter;
 
 import com.jmisnaza.callcenter.entities.Call;
-import com.jmisnaza.callcenter.entities.Employed;
+import com.jmisnaza.callcenter.entities.Employee;
 import com.jmisnaza.callcenter.enums.CallStatusEnum;
 import com.jmisnaza.callcenter.logic.EmployedServiceImpl;
 import com.jmisnaza.callcenter.logic.services.EmployedServices;
@@ -23,13 +23,13 @@ public class Dispatcher {
         executor =  Executors.newFixedThreadPool(10);
     }
 
-    private void processCalls(Call call) {
-        Employed employed = new Employed();
-        employed.setRolEmployed(employedServices.assignEmployed());
-        call.setTakenBy(employed);
-        call.setStatus(CallStatusEnum.IN_PROGRESS);
-        TakeCall called = new TakeCall(call);
+    public void processCalls(Call call) {
+        Employee employed = new Employee();
         try {
+            employed.setRolEmployed(employedServices.assignEmployed());
+            call.setTakenBy(employed);
+            call.setStatus(CallStatusEnum.IN_PROGRESS);
+            TakeCall called = new TakeCall(call);
             CompletableFuture<Call> completable = CompletableFuture.supplyAsync(called::call, executor);
             completable.whenCompleteAsync((status, exception) -> {
                 if (status.getStatus().equals(CallStatusEnum.SUCCESS)) {

@@ -8,7 +8,7 @@ public class Call {
 
     private double lengthCall;
 
-    private Employed takenBy;
+    private Employee takenBy;
 
     private CallStatusEnum status;
 
@@ -28,11 +28,11 @@ public class Call {
         this.lengthCall = lengthCall;
     }
 
-    public Employed getTakenBy() {
+    public Employee getTakenBy() {
         return takenBy;
     }
 
-    public void setTakenBy(Employed takenBy) {
+    public void setTakenBy(Employee takenBy) {
         this.takenBy = takenBy;
     }
 
