@@ -9,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -40,7 +38,6 @@ public class CallCenterApplicationTests {
 
 	@Test
 	public void testSearchSync() throws Exception {
-		// Mocking service
-		//mockMvc.perform(post("/manga/sync/ken"));
+		mockMvc.perform(get("/dispatcher/"));
 	}
 }
