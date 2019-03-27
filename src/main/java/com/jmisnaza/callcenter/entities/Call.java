@@ -2,7 +2,9 @@ package com.jmisnaza.callcenter.entities;
 
 import com.jmisnaza.callcenter.enums.CallStatusEnum;
 
-
+/**
+ * POJO de una llamada
+ */
 public class Call {
 
     private int idCall;

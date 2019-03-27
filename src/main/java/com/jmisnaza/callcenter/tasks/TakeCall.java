@@ -8,6 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.Callable;
 
+/**
+ * Se elige la interfaz <code>Callable</code> porque permitirá
+ * devolver el resultado de la transacción, y con esto dar un
+ * mensaje sobre la misma.
+ */
 @Slf4j
 public class TakeCall implements Callable<Call> {
 
@@ -20,6 +25,14 @@ public class TakeCall implements Callable<Call> {
         this.call = call;
     }
 
+    /**
+     * Proceso atomico donde se atiende la llamada por completo.
+     * En el inicio del proceso se asigna un empleado según disponibilidad.
+     * Luego se simula el tiempo que tarda la llamada, para luego liberar
+     * al empleado quien la atendio y por último pasar la llamada a estado
+     * exitoso.
+     * @return
+     */
     @Override
     public Call call() {
         try {

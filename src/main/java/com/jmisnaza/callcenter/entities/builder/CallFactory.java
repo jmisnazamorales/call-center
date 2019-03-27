@@ -6,6 +6,9 @@ import com.jmisnaza.callcenter.enums.CallStatusEnum;
 
 import java.util.Random;
 
+/**
+ * Fabrica que construye llamadas por solicitud.
+ */
 public class CallFactory {
 
     private static int idCall = 0;

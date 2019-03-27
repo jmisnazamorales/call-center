@@ -2,6 +2,9 @@ package com.jmisnaza.callcenter.entities;
 
 import com.jmisnaza.callcenter.enums.RolEnum;
 
+/**
+ * POJO de un empleado
+ */
 public class Employee {
 
     private RolEnum rolEmployed;

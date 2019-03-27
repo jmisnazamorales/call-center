@@ -37,7 +37,7 @@ public class CallCenterApplicationTests {
 	}
 
 	@Test
-	public void testSearchSync() throws Exception {
+	public void test10Request() throws Exception {
 		mockMvc.perform(get("/dispatcher/"));
 	}
 }
