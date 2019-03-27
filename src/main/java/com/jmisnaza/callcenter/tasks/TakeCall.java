@@ -2,42 +2,41 @@ package com.jmisnaza.callcenter.tasks;
 
 import com.jmisnaza.callcenter.entities.Call;
 import com.jmisnaza.callcenter.enums.CallStatusEnum;
+import com.jmisnaza.callcenter.logic.EmployedServiceImpl;
+import com.jmisnaza.callcenter.logic.services.EmployedServices;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Random;
 import java.util.concurrent.Callable;
 
 @Slf4j
 public class TakeCall implements Callable<Call> {
 
-    private final Random random = new Random();
-
     private Call call;
 
+    private EmployedServices employedServices = new EmployedServiceImpl();
+
     public TakeCall (Call call){
+        log.info("Call {}", call.getIdCall());
         this.call = call;
     }
 
     @Override
     public Call call() {
         try {
-            long timeCall = calculateTimeCall();
-            log.info("Time´s Call {}", timeCall);
-            Thread.sleep(calculateTimeCall());
+            call.getTakenBy().setRolEmployed(employedServices.assignEmployed());
+            log.info("Time´s Call {} {}", call.getIdCall(), call.getLengthCall());
+            try {
+                Thread.sleep( new Double(call.getLengthCall()).longValue());
+            } catch (InterruptedException e) {
+                log.error("Error Thread {}", e.getMessage());
+            }
+            employedServices.enableEmployed(call.getTakenBy().getRolEmployed());
             this.call.setStatus(CallStatusEnum.SUCCESS);
-        }
-        catch (InterruptedException e){
-            this.call.setStatus(CallStatusEnum.FAIL);
-            log.error("Error to process thread, {}", e.getMessage());
         }
         catch (Exception e){
             this.call.setStatus(CallStatusEnum.FAIL);
             log.error("Error, {}", e.getMessage());
         }
-        return this.call;
-    }
-
-    private long calculateTimeCall(){
-        return random.nextInt(10 - 5 + 1) + 5;
+        return call;
     }
 }

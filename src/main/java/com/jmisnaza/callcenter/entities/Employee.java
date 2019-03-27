@@ -13,4 +13,11 @@ public class Employee {
     public void setRolEmployed(RolEnum rolEmployed) {
         this.rolEmployed = rolEmployed;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "rolEmployed=" + rolEmployed +
+                '}';
+    }
 }

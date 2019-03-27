@@ -2,6 +2,7 @@ package com.jmisnaza.callcenter.entities;
 
 import com.jmisnaza.callcenter.enums.CallStatusEnum;
 
+
 public class Call {
 
     private int idCall;
@@ -43,4 +44,16 @@ public class Call {
     public void setStatus(CallStatusEnum status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Call{" +
+                "idCall=" + idCall +
+                ", lengthCall=" + lengthCall +
+                ", takenBy=" + takenBy +
+                ", status=" + status +
+                '}';
+    }
+
+
 }

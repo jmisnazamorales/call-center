@@ -22,16 +22,4 @@ public class DispatcherTest {
     }
 
 
-    @Test()
-    public void test10ConcurrentCalls(){
-        log.info("Processing call");
-        Dispatcher d = new Dispatcher();
-        for (int i = 0; i <= 20; i++) {
-            Call call = new Call();
-            call.setIdCall(i);
-            d.processCalls(call);
-        }
-
-
-    }
 }
