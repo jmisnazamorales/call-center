@@ -3,7 +3,6 @@ package com.jmisnaza.callcenter;
 import com.jmisnaza.callcenter.entities.Call;
 import com.jmisnaza.callcenter.entities.builder.CallFactory;
 import com.jmisnaza.callcenter.enums.CallStatusEnum;
-import com.jmisnaza.callcenter.logic.services.EmployedServices;
 import com.jmisnaza.callcenter.tasks.TakeCall;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
