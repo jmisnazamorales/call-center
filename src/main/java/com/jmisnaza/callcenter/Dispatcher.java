@@ -5,7 +5,7 @@ import com.jmisnaza.callcenter.entities.builder.CallFactory;
 import com.jmisnaza.callcenter.enums.CallStatusEnum;
 import com.jmisnaza.callcenter.tasks.TakeCall;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +29,8 @@ public class Dispatcher {
      */
     private static final ExecutorService executor =  Executors.newFixedThreadPool(10);
 
-    @GetMapping
-    public void dispatchCall() {
+    @PostMapping
+    public String dispatchCall() {
         Call call = CallFactory.buildCall();
         TakeCall called = new TakeCall(call);
         CompletableFuture<Call> completable = CompletableFuture.supplyAsync(called::call, executor);
@@ -41,6 +41,7 @@ public class Dispatcher {
                 log.error("Finish call. Fail to remove rol {}", call.getTakenBy().getRolEmployed());
             }
         });
+        return "Ok";
     }
 
 }

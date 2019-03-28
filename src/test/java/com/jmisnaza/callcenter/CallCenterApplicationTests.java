@@ -7,11 +7,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @RunWith(SpringRunner.class)
@@ -38,6 +41,10 @@ public class CallCenterApplicationTests {
 
 	@Test
 	public void test10Request() throws Exception {
-		mockMvc.perform(get("/dispatcher/"));
+		mockMvc.perform(post("/dispatcher/")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(""))
+				.andDo(print())
+				.andExpect(status().is2xxSuccessful());
 	}
 }

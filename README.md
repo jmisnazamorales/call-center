@@ -25,3 +25,6 @@ This application was created using:
 mvn clean install
 java -jar ./target/call-center-1.0.jar
 ```
+2) Go to navigator and put the URL to do a request. 
+http://localhost:8080/dispatcher/
+From web services client like Postman make this request is easier. 
